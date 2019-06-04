@@ -1,4 +1,4 @@
-baseURL = "https://leandrocp.com.br"
+baseURL = "https://leandrocp.com.br/"
 languageCode = "en-us"
 title = "Leandro Cesquini Pereira"
 theme = "hugo-lodi-theme"
@@ -6,10 +6,9 @@ googleAnalytics = "UA-60912157-1"
 
 [params]
     theme_color = "#4b285b"
-    description = "Portfolio of Alexis Collado, UX Designer"
-    description_photo = "portfolio.jpg"
+    description = "Leandro Cesquini Pereira. Software Engineer & Open Source contributor"
+    description_photo = "leandro.jpeg"
     favicon = "favicon.ico"
-    logo = "logo.png"
     twitter = "leandrocesquini"
     linkedin = "https://www.linkedin.com/in/leandrocesquini"
     medium = "leandrocesquini"
@@ -22,19 +21,3 @@ googleAnalytics = "UA-60912157-1"
     enable = true
     avatar = "leandro.jpeg"
     subtitle = "Hi! I'm Leandro. A software engineer & open source contributor."
-    hero_right = [
-        "**Currently doing consultancy work at UX Society. Previously doing UX and product at Agoda in Bangkok, Thailand as an international intern.**", "I founded [User Experience Society](https://www.facebook.com/UXSoc/), the first student UX organization in the Philippines. For two years, we've had 20+ events with 30+ speakers for over 300 members and 500+ attendees. We've expanded to [California](https://www.facebook.com/profile.php?id=245708449193012) this year.", "I do a bit of writing as well. [Here's an article with a total of 21,000+ views to InVision & Medium](http://blog.invisionapp.com/ux-internship-wisdom/) talking about 50 things I learned spending 3 years as a UX intern.", "I help cultivate the design community in Manila too. I'm the youngest core member of [UX Philippines](https://www.facebook.com/groups/uxphilippines/) and I moderated a panel with some cool people for the [UXPH 2017 Conference](https://www.uxphilippines.com).", "I'm finishing my Bachelor's degree in Management Information Systems at the Ateneo de Manila University, expecting to graduate in 2018."
-    ]
-
-[params.process]
-    enable = false
-    title = "My Process"
-    subtitle = "Full Process Design"
-
-[params.case_studies]
-    enable = false
-    title = "Case Studies"
-    subtitle = "Selected Works"
-
-[params.footer]
-    enable = false
