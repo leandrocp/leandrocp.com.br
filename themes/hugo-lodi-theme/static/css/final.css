@@ -16,6 +16,7 @@ a {
   text-decoration: none;
   -webkit-transition: 0.1s ease-in;
   transition: 0.1s ease-in;
+  color: #551a8b;
 }
 
 a:hover {
