@@ -6,7 +6,7 @@ googleAnalytics = "UA-60912157-1"
 
 [params]
     theme_color = "#4b285b"
-    description = "Leandro Cesquini Pereira. Software Engineer & Open Source contributor"
+    description = "Leandro Cesquini Pereira. Software Engineer and Open Source contributor"
     description_photo = "leandro.jpeg"
     favicon = "favicon.ico"
     twitter = "leandrocesquini"
