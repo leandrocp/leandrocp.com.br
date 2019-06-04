@@ -2,7 +2,7 @@ baseURL = "https://leandrocp.com.br"
 languageCode = "en-us"
 title = "Leandro Cesquini Pereira"
 theme = "hugo-lodi-theme"
-googleAnalytics = "UA-XXXXXXXX-Y"
+googleAnalytics = "UA-60912157-1"
 
 [params]
     theme_color = "#4b285b"
