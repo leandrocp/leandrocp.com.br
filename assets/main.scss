@@ -1,0 +1,73 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+$purple2: #4b285b;
+$orange: #ffc300;
+$primary: $purple2;
+
+@import "styles";
+@import "github.css";
+
+body {
+  font-size: 18px;
+  color: $gray-900;
+  @include serif-font;
+}
+
+.h2, h2 {
+  margin-top: 3rem;
+  line-height: 1.2;
+}
+
+.h3, .h4, .h5, .h6, h3, h4, h5, h6 {
+  margin-top: 3.5rem;
+  line-height: 1.2;
+}
+
+p {
+  line-height: 1.5;
+  margin: 20px 0;
+  letter-spacing: 0.01em;
+}
+
+a {
+  color: $primary;
+  transition-property: color;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+}
+
+a:hover {
+  color: $purple;
+}
+
+header.masthead .page-heading h1, header.masthead .site-heading h1.intro {
+  color: $orange;
+  font-size: 58px;
+}
+
+.subheading {
+  color: $gray-100;
+}
+
+article.post-preview {
+  margin: 60px 0;
+}
+
+article.post-preview > a > h2.post-title {
+  font-size: 2rem;
+}
+
+article.post-preview > a > h3.post-subtitle {
+  font-size: 1.5rem;
+}
+
+div.highlight {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.post-end {
+  margin-top: 100px;
+}
