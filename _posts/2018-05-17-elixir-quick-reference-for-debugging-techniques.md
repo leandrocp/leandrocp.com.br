@@ -81,7 +81,7 @@ Result:
 
 ## IEx.pry
 
-But it can be very tedious and be limiting to debug with just data inspection likeIO.inspect or apex, that's when [IEx.pry/0](https://hexdocs.pm/iex/IEx.html#pry/0) comes at hand because it allows you to pry into the current code. Put the following code at the line you want to pry:
+But it can be very tedious and limiting to debug with just data inspection like `IO.inspect` or `apex`, that's when [IEx.pry/0](https://hexdocs.pm/iex/IEx.html#pry/0) comes at hand because it allows you to pry into the current code. Put the following code at the line you want to pry:
 
 ```elixir
 def some_fun(a, b, c) do
@@ -92,7 +92,7 @@ end
 
 And now execute your code inside an IEx session: `iex -S mix` or `iex -S mix phx.server` if you are using Phoenix Framework. Tip: if you are running tasks like database seeds, you can pry into that code by running `iex -S mix run priv/repo/seeds.exs` or any other script.
 
-Once the code execution gets to the point of IEx.pry , an interactive shell opens and allow you to interact with the current code.
+Once the code execution gets to the point of `IEx.pry`, an interactive shell opens and allow you to interact with the current code.
 
 Go to [Debugging Phoenix with IEx.pry](https://medium.com/@diamondgfx/debugging-phoenix-with-iex-pry-5417256e1d11) if you want more tips about debugging Phoenix with IEx.pry.
 
@@ -141,18 +141,36 @@ iex(3)> :sys.get_state(pid)
 %{ping: "pong"}
 ```
 
-Snippet extracted from [Looking at the state of processes in Elixir](https://til.hashrocket.com/posts/urmxev1dh5-looking-at-the-state-of-processes-in-elixir).
+_Snippet extracted from [Looking at the state of processes in Elixir](https://til.hashrocket.com/posts/urmxev1dh5-looking-at-the-state-of-processes-in-elixir)._
 
-If you need more data than just the current state, just call [:sys.get_status/1](http://erlang.org/doc/man/sys.html#get_status-1) , which will return whole process information:
+If you need more data than just the current state, just call [:sys.get_status/1](http://erlang.org/doc/man/sys.html#get_status-1), which will return whole process information:
 
 ```elixir
+{:status, #PID<0.134.0>, {:module, :gen_server},
+  [
+    [
+      "$initial_call": {Sequence.Server, :init, 1},
+      "$ancestors": [#PID<0.118.0>, #PID<0.57.0>]
+    ],
+    :running,
+    #PID<0.118.0>,
+    [statistics: {{{2017, 12, 23}, {14, 11, 13}}, {:reductions, 14}, 3, 0},
+    [
+      header: 'Status for generic server <0.134.0>',
+      data: [
+        {'Status', :running},
+        {'Parent', #PID<0.118.0>},
+        {'Logged events', []}
+    ],
+    data: [{'State', 103}]
+  ]
 
 # Excerpt From: Dave Thomas. “Programming Elixir ≥ 1.6"
 ```
 
 Snnipet extracted from [Programming Elixir book](https://pragprog.com/book/elixir/programming-elixir).
 
-Bonus: you can replace a process state at runtime using [:sys.replace_state/2](http://erlang.org/doc/man/sys.html#replace_state-2) , which can be very handy to test some specific situation.
+Bonus: you can replace a process state at runtime using [:sys.replace_state/2](http://erlang.org/doc/man/sys.html#replace_state-2), which can be very handy to test some specific situation.
 
 ## Process.info
 
