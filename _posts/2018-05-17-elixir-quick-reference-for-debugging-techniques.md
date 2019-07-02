@@ -19,7 +19,7 @@ IO.inspect(my_list)
 [1, 2, 3]
 ```
 
-[IO.inspect/2](https://hexdocs.pm/elixir/IO.html#inspect/2)can also be used inside pipelines because [it returns the item passed to be inspected](https://github.com/elixir-lang/elixir/blob/v1.6.5/lib/elixir/lib/io.ex#L311). And the tip here is to use the option label:to output a string identifying each inspect:
+[IO.inspect/2](https://hexdocs.pm/elixir/IO.html#inspect/2) can also be used inside pipelines because [it returns the item passed to be inspected](https://github.com/elixir-lang/elixir/blob/v1.6.5/lib/elixir/lib/io.ex#L311). And the tip here is to use the option `label:` to output a string identifying each inspect:
 
 ```elixir
 [1, 2, 3]
@@ -90,7 +90,7 @@ def some_fun(a, b, c) do
 end
 ```
 
-And now execute your code inside an IEx session: iex -S mix or iex -S mix phx.server if you are using Phoenix Framework. Tip: if you are running tasks like database seeds, you can pry into that code by running iex -S mix run priv/repo/seeds.exs or any other script.
+And now execute your code inside an IEx session: `iex -S mix` or `iex -S mix phx.server` if you are using Phoenix Framework. Tip: if you are running tasks like database seeds, you can pry into that code by running `iex -S mix run priv/repo/seeds.exs` or any other script.
 
 Once the code execution gets to the point of IEx.pry , an interactive shell opens and allow you to interact with the current code.
 
@@ -102,7 +102,7 @@ Pretty much the same as IEx.pry which stops the execution at the break point and
 
 ![gif from http://blog.plataformatec.com.br/2016/04/debugging-techniques-in-elixir-lang/)](http://blog.plataformatec.com.br/wp-content/uploads/2016/04/debugger-elixir.gif)
 
-gif from [http://blog.plataformatec.com.br/2016/04/debugging-techniques-in-elixir-lang](http://blog.plataformatec.com.br/2016/04/debugging-techniques-in-elixir-lang)
+_gif from [http://blog.plataformatec.com.br/2016/04/debugging-techniques-in-elixir-lang](http://blog.plataformatec.com.br/2016/04/debugging-techniques-in-elixir-lang)_
 
 To open this debugger, you need to start it and set a break point:
 
@@ -132,7 +132,7 @@ iex> MyApp.Example.sum(1,2)
 
 ## :sys.get_state and :sys.get_status
 
-This one works only for processes. As the name suggests, [:sys.get_state/1](http://erlang.org/doc/man/sys.html#get_state-1)gets the current state of a process, and not only from a GenServer but also from any kind of process:
+This one works only for processes. As the name suggests, [:sys.get_state/1](http://erlang.org/doc/man/sys.html#get_state-1) gets the current state of a process, and not only from a GenServer but also from any kind of process:
 
 ```elixir
 iex(1)> defmodule Example, do: use GenServer
@@ -194,7 +194,7 @@ iex> Process.info pid
 
 ## :sys.trace
 
-Still talking about process debug, another resource we have is [:sys.trace/2](http://erlang.org/doc/man/sys.html#trace-2)to trace process calls, which will display each call and state change of the calling process:
+Still talking about process debug, another resource we have is [:sys.trace/2](http://erlang.org/doc/man/sys.html#trace-2) to trace process calls, which will display each call and state change of the calling process:
 
 ```elixir
 iex> :sys.trace pid, true
