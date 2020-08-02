@@ -6,6 +6,8 @@ baseurl:            "/"
 url:                "https://leandrocp.com.br"
 
 theme: jekyll-theme-clean-blog
+sass:
+  sass_dir: _sass
 
 # Social Profiles
 twitter_username:   leandrocesquini
