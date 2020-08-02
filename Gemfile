@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'jekyll', '~> 3.8'
-gem 'jekyll-theme-clean-blog', '~> 4.0'
+gem 'jekyll-theme-clean-blog', '4.0.10'
 gem 'rouge', '~> 3.4'
 
 group :jekyll_plugins do
