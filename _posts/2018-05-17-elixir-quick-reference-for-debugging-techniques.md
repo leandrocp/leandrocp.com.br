@@ -145,28 +145,7 @@ _Snippet extracted from [Looking at the state of processes in Elixir](https://ti
 
 If you need more data than just the current state, just call [:sys.get_status/1](http://erlang.org/doc/man/sys.html#get_status-1), which will return whole process information:
 
-```elixir
-{:status, #PID<0.134.0>, {:module, :gen_server},
-  [
-    [
-      "$initial_call": {Sequence.Server, :init, 1},
-      "$ancestors": [#PID<0.118.0>, #PID<0.57.0>]
-    ],
-    :running,
-    #PID<0.118.0>,
-    [statistics: {{{2017, 12, 23}, {14, 11, 13}}, {:reductions, 14}, 3, 0},
-    [
-      header: 'Status for generic server <0.134.0>',
-      data: [
-        {'Status', :running},
-        {'Parent', #PID<0.118.0>},
-        {'Logged events', []}
-    ],
-    data: [{'State', 103}]
-  ]
-
-# Excerpt From: Dave Thomas. “Programming Elixir ≥ 1.6"
-```
+<script src="https://gist.github.com/leandrocp/89a546380e614a6f230e90a83d39facf.js"></script>
 
 Snnipet extracted from [Programming Elixir book](https://pragprog.com/book/elixir/programming-elixir).
 
