@@ -50,11 +50,14 @@ First, let's install the deps. Add the following in *deps list*:
 And let’s change the project’s config. Add this to the *project function*:
 
 ```elixir
-elixirc_options: [warnings_as_errors: true],
 aliases: aliases(),
 dialyzer: [
   plt_file: {:no_warn, "priv/plts/dialyzer.plt"},
   ignore_warnings: ".dialyzer_ignore.exs"
+],
+preferred_cli_env: [
+  quality: :test,
+  "quality.ci": :test
 ]
 ```
 
@@ -68,13 +71,15 @@ defmodule YourProject.MixProject do
     [
       # current configs...
       
-      elixirc_options: [warnings_as_errors: true],
       aliases: aliases(),
       dialyzer: [
         plt_file: {:no_warn, "priv/plts/dialyzer.plt"},
         ignore_warnings: ".dialyzer_ignore.exs"
+      ],
+      preferred_cli_env: [
+        quality: :test,
+        "quality.ci": :test
       ]
-    ]
   end
 
   defp deps do
@@ -98,20 +103,28 @@ Continuing, let's create an alias function in your mix.exs file, *if you don't h
 defp aliases do
   [
     # current aliases...
-    
-    quality: ["format", "credo --strict", "sobelow --verbose", "dialyzer", "test"],
-    "quality.ci": [
+
+    quality: [
+      "compile --all-warnings --warnings-as-errors",
       "test",
+      "format",
+      "credo --strict",
+      "sobelow --verbose",
+      "dialyzer --ignore-exit-status"
+    ],
+    "quality.ci": [
+      "compile --all-warnings --warnings-as-errors",
+      "test --slowest 10",
       "format --check-formatted",
       "credo --strict",
       "sobelow --exit",
-      "dialyzer --halt-exit-status"
+      "dialyzer"
     ]
   ]
 end
 ```
 
-I like using one alias specific for local development (quality) and one for CI/CD (quality.ci) because I have more freedom on the order of the tasks and its arguments. For example, on local development I don't want to check if the code is formatted, I just format the code directly; and I like to see test results at the end. Adapt as you want.
+Keep in mind that it would be better to run each step of `quality.ci` task in parallel to reduce the total time of each job on CI.
 
 ### .dialyzer_ignore.exs
 
@@ -124,13 +137,18 @@ Create the file *.dialyzer_ignore.exs* in the root dir of the project:
 ]
 ```
 
-Remember I said those tools may be annoying ? Specially the dialyzer. Don't get me wrong, dialyzer is amazing and I believe you should use it, but sometimes you need to ignore a warning or two, and that's the file where you can do that.
+Remember I said those tools may be annoying? Specially the dialyzer. Don't get me wrong, dialyzer is amazing and I think you should use it, but sometimes you need to ignore a warning or two, and that's the file where you can do that.
 
-About the content of this file: we'll run our aliases on the test environment (MIX_ENV=test) and dialyzer reclaim that those functions are errors, but that's not a big deal and let's just ignore it.
+About the content of this file: we'll run our aliases on the test environment and dialyzer complains that those functions are errors, but that's not a big deal and let's just ignore it.
 
 ### Credo
 
 You don’t need to change anything in order to make credo work, but the default rules may not be suitable for your project. You can change that using a [.credo.exs](https://github.com/rrrene/credo#configuration-via-credoexs) file or [using special comments](https://github.com/rrrene/credo#inline-configuration-via-config-comments).
+
+
+### Sobelow
+
+The same for sobelow, you can create a [config file](https://github.com/nccgroup/sobelow#configuration-files) but remember to call the command as `sobelow --config` to actually read configs from that file.
 
 ### .gitignore
 
@@ -157,13 +175,13 @@ First, let's create the dir where dialyzer will store plt files:
 
 And then just execute in your terminal:
 
-`MIX_ENV=test mix quality`
+`mix quality`
 
 Take some time off and grab a coffee, the first execution will take some time to build all dialyzer artefacts, but those files will be cached, don’t worry.
 
 And change your CI/CD pipeline to execute:
 
-`MIX_ENV=test mix quality.ci`
+`mix quality.ci`
 
 Whenever this command finds an issue in your code, the CI/CD pipeline will halt and return a failure.
 
@@ -181,7 +199,6 @@ defmodule YourProject.MixProject do
       version: "0.1.0",
       elixir: "~> 1.6",
       elixirc_paths: elixirc_paths(Mix.env()),
-      elixirc_options: [warnings_as_errors: true],
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
@@ -189,6 +206,10 @@ defmodule YourProject.MixProject do
       dialyzer: [
         plt_file: {:no_warn, "priv/plts/dialyzer.plt"},
         ignore_warnings: ".dialyzer_ignore.exs"
+      ],
+      preferred_cli_env: [
+        quality: :test,
+        "quality.ci": :test
       ]
     ]
   end
@@ -236,17 +257,24 @@ defmodule YourProject.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      quality: ["format", "credo --strict", "sobelow --verbose", "dialyzer", "test"],
-      "quality.ci": [
+      # current aliases...
+
+      quality: [
+        "compile --all-warnings --warnings-as-errors",
         "test",
+        "format",
+        "credo --strict",
+        "sobelow --verbose",
+        "dialyzer --ignore-exit-status"
+      ],
+      "quality.ci": [
+        "compile --all-warnings --warnings-as-errors",
+        "test --slowest 10",
         "format --check-formatted",
         "credo --strict",
         "sobelow --exit",
-        "dialyzer --halt-exit-status"
-      ],
-      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-      "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate", "test"]
+        "dialyzer"
+      ]
     ]
   end
 end
@@ -316,6 +344,10 @@ npm-debug.log
 # Sobelow
 .sobelow
 ```
+
+## Worth taking a look
+
+* [ex_check](https://github.com/karolsluszniak/ex_check)
 
 
 ## References
